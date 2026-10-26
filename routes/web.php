@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Game;
 
 Route::get('/', function () {
-    return view('welcome');
+    $games = Game::all();
+    return $games;
 });
