@@ -1,9 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Models\Game;
+use App\Http\Controllers\GameController;
 
-Route::get('/', function () {
-    $games = Game::all();
-    return $games;
-});
+Route::get('/', [GameController::class, 'index']);
