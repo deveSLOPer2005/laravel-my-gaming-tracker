@@ -20,14 +20,34 @@
             <td>{{ $game->gameStatus->game_status }}</td>
             <td>
         <form action="/games/{{ $game->id }}" method="POST" style="display:inline;">
-        @csrf
-        @method('DELETE')
-        <button type="submit">delete</button>
-    </form>
-</td>
-        </tr>
+            @csrf
+            @method('DELETE')
+            <button type="submit">delete</button>
+        </form>
+    </td>
+</tr>
         @endforeach
-        
     </table>
+    <form action="/games" method="POST">
+    @csrf
+    <div>
+        <label for="title">game name:</label>
+        <input type="text" name="title" id="title" required>
+    </div>
+    <div>
+    <label for="status_id">game status:</label>
+    <select name="status_id" id="status_id" required>
+        <option value="" disabled selected hidden>choose status</option>
+        @foreach ($statuses as $status)
+            <option value="{{ $status->id }}">{{ $status->game_status }}</option>
+        @endforeach
+    </select>
+    </div>
+        <div>
+        <label for="genre_input">game genre:</label>
+        <input type="text" name="genre_id" id="genre_id" required>
+    </div>
+    <button type="submit">add game</button>
+</form>
 </body>
 </html>
