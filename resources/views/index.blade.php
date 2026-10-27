@@ -18,8 +18,16 @@
             <td>{{ $game->title }}</td>
             <td>{{ $game->genre->genre }}</td>
             <td>{{ $game->gameStatus->game_status }}</td>
+            <td>
+        <form action="/games/{{ $game->id }}" method="POST" style="display:inline;">
+        @csrf
+        @method('DELETE')
+        <button type="submit">delete</button>
+    </form>
+</td>
         </tr>
         @endforeach
+        
     </table>
 </body>
 </html>
