@@ -9,16 +9,30 @@ use App\Models\Genre;
 
 class GameController extends Controller
 {
-    public function index() {
-        $my_games = Game::all();
+    public function index(Request $request) {
+        $filter = $request->query('status_choice', 'all');
+        $query = Game::query();
+        if ($filter !== 'all') {
+        $query->whereHas('gameStatus', function($q) use ($filter) {
+            $q->where('game_status', $filter);
+            });
+        }
+        $my_games = $query->get(); 
         $statuses = GameStatus::all();
-        return view('index', compact('my_games', 'statuses'));
+        return view('index', compact('my_games', 'statuses', 'filter'));
     }
-        public function edit($id) {
-        $my_games = Game::all();
+        public function edit(Request $request, $id) {
         $game_to_edit = Game::findOrFail($id);
+        $filter = $request->query('status_choice', 'all');
+        $query = Game::query();
+        if ($filter !== 'all') {
+        $query->whereHas('gameStatus', function($q) use ($filter) {
+            $q->where('game_status', $filter);
+            });
+        }
+        $my_games = $query->get(); 
         $statuses = GameStatus::all();
-        return view('index', compact('my_games', 'game_to_edit', 'statuses'));
+        return view('index', compact('my_games', 'game_to_edit', 'statuses', 'filter'));
     }
 
     public function update(Request $request, $id) {

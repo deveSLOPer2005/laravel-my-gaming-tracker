@@ -30,6 +30,18 @@
         </tr>
         @endforeach
     </table>
+    <form action="/" method="GET" style="margin-top: 20px;">
+    <label for='status_choice'>choose status:</label>
+    <select id='status_choice' name='status_choice'>
+        <option value="all" {{ $filter === 'all' ? 'selected' : '' }}>all</option>
+        @foreach($statuses as $status)
+            <option value="{{ $status->game_status }}" {{ $filter === $status->game_status ? 'selected' : '' }}>
+                {{ $status->game_status }}
+            </option>
+        @endforeach
+    </select>
+    <button type="submit">submit</button>
+    </form>
 
     <h2>{{ isset($game_to_edit) ? 'edit game' : 'add game' }}</h2>
 
