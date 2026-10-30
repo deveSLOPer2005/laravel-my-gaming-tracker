@@ -30,6 +30,9 @@
         </tr>
         @endforeach
     </table>
+    <div style="margin-top: 15px;">
+    {{ $my_games->links() }}
+    </div>
     <form action="/" method="GET" style="margin-top: 20px;">
     <label for='status_choice'>choose status:</label>
     <select id='status_choice' name='status_choice'>

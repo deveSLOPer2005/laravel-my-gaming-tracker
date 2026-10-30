@@ -17,7 +17,7 @@ class GameController extends Controller
             $q->where('game_status', $filter);
             });
         }
-        $my_games = $query->get(); 
+        $my_games = $query->paginate(3)->withQueryString();
         $statuses = GameStatus::all();
         return view('index', compact('my_games', 'statuses', 'filter'));
     }
@@ -30,7 +30,7 @@ class GameController extends Controller
             $q->where('game_status', $filter);
             });
         }
-        $my_games = $query->get(); 
+        $my_games = $query->paginate(3)->withQueryString();
         $statuses = GameStatus::all();
         return view('index', compact('my_games', 'game_to_edit', 'statuses', 'filter'));
     }
