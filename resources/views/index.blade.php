@@ -83,5 +83,14 @@
             <a href="/" style="margin-left: 10px;">cancel</a>
         @endif
     </form>
+    <form action="/logout" method="POST" style="margin-top: 20px;">
+    @csrf
+    <button type="submit">logout</button>
+    </form>
+
+    <form action="/delete-account" method="POST" style="margin-top: 10px;">
+    @csrf
+    <button type="submit" onclick="return confirm('Are you sure?')">delete account</button>
+</form>
 </body>
 </html>
